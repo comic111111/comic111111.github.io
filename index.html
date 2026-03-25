@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 创作者的OC基地 | 建设中</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 32px;
+            padding: 48px 40px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .progress {
+            background: #e2e8f0;
+            border-radius: 999px;
+            height: 12px;
+            margin: 32px 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            width: 30%;
+            height: 100%;
+            border-radius: 999px;
+            animation: loading 1.5s ease-out;
+        }
+        
+        @keyframes loading {
+            from {
+                width: 0;
+            }
+            to {
+                width: 30%;
+            }
+        }
+        
+        .status {
+            font-size: 0.9rem;
+            color: #718096;
+            margin-top: -20px;
+            margin-bottom: 32px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -10px rgba(102, 126, 234, 0.5);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 0.85rem;
+            color: #a0aec0;
+        }
+        
+        .heart {
+            color: #e53e3e;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="emoji">
+            🎨 ✨ 🌸
+        </div>
+        <h1>
+            创作者的OC基地
+        </h1>
+        <p>
+            这里是为一位特别的创作者准备的空间。<br>
+            所有的OC、设定和画作，都会慢慢在这里安家。
+        </p>
+        <div class="progress">
+            <div class="progress-bar"></div>
+        </div>
+        <div class="status">
+            ⚡ 网站搭建中 · 期待满满的内容 ⚡
+        </div>
+        <a href="#" class="btn">
+            ✨ 即将开放 ✨
+        </a>
+        <div class="footer">
+            用 <span class="heart">❤️</span> 为你的创作加油
+        </div>
+    </div>
+</body>
+</html>
