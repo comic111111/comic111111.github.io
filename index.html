@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>希望峰学园 - 官方入学查询系统</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- 引入 Font Awesome 图标库（免费） -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- 加载动画 -->
+    <div class="loading-screen" id="loading">
+        <div class="loading-content">
+            <div class="monokuma-eye"></div>
+            <p id="loading-text">HOPE PEAK ACADEMY</p>
+        </div>
+    </div>
+
+    <!-- 主内容 -->
+    <div class="container" id="main-content" style="display: none;">
+        <!-- 顶部导航栏 -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-school"></i>
+                <span id="school-name">希望峰学园</span>
+                <span class="badge">公式サイト</span>
+            </div>
+            <div class="nav-controls">
+                <!-- 语言切换按钮 -->
+                <div class="lang-switch">
+                    <button class="lang-btn active" data-lang="zh">中文</button>
+                    <button class="lang-btn" data-lang="ja">日本語</button>
+                </div>
+                <!-- 手机菜单按钮 -->
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </nav>
+
+        <!-- 侧边栏 + 主内容区 -->
+        <div class="main-layout">
+            <!-- 侧边导航（类似神户大学官网的固定侧边栏） -->
+            <aside class="sidebar" id="sidebar">
+                <div class="sidebar-menu">
+                    <a href="#" class="menu-item active" data-page="home">
+                        <i class="fas fa-home"></i>
+                        <span data-i18n="nav.home">学园トップ</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="query">
+                        <i class="fas fa-search"></i>
+                        <span data-i18n="nav.query">入学查询</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="about">
+                        <i class="fas fa-info-circle"></i>
+                        <span data-i18n="nav.about">学园概要</span>
+                    </a>
+                    <a href="#" class="menu-item" data-page="oc">
+                        <i class="fas fa-user-graduate"></i>
+                        <span data-i18n="nav.oc">超高校级のOC</span>
+                    </a>
+                </div>
+                <!-- 侧边栏底部的黑白熊装饰 -->
+                <div class="sidebar-footer">
+                    <div class="monokuma-icon">🐻‍❄️</div>
+                </div>
+            </aside>
+
+            <!-- 主内容区域 -->
+            <main class="main-content">
+                <!-- 首页 -->
+                <div id="home-page" class="page active">
+                    <div class="hero-section">
+                        <div class="hero-badge">私立</div>
+                        <h1 class="hero-title">
+                            <span class="jp">希望ヶ峰学園</span>
+                            <span class="en">HOPE'S PEAK ACADEMY</span>
+                        </h1>
+                        <p class="hero-subtitle" data-i18n="home.subtitle">
+                            "才ある者だけが入学を許される、特別な学園"
+                        </p>
+                        <div class="hero-stats">
+                            <div class="stat">
+                                <span class="stat-number">78</span>
+                                <span class="stat-label" data-i18n="home.stats.graduates">卒業生</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">99%</span>
+                                <span class="stat-label" data-i18n="home.stats.employment">就職率</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number">16</span>
+                                <span class="stat-label" data-i18n="home.stats.departments">学科</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="news-section">
+                        <h2><i class="fas fa-newspaper"></i> <span data-i18n="home.news.title">新着情報</span></h2>
+                        <div class="news-list">
+                            <div class="news-item">
+                                <span class="news-date">2025.04.01</span>
+                                <span class="news-title" data-i18n="home.news.1">入学式のお知らせ</span>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">2025.03.25</span>
+                                <span class="news-title" data-i18n="home.news.2">新学期授業開始</span>
+                            </div>
+                            <div class="news-item">
+                                <span class="news-date">2025.03.20</span>
+                                <span class="news-title" data-i18n="home.news.3">修了式を挙行</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 查询页面（核心功能） -->
+                <div id="query-page" class="page">
+                    <div class="page-header">
+                        <h2><i class="fas fa-ticket-alt"></i> <span data-i18n="query.title">入学許可証照会</span></h2>
+                        <p data-i18n="query.desc">合格者の受験番号を入力し、入学許可証を確認してください</p>
+                    </div>
+                    
+                    <!-- 查询表单 -->
+                    <div class="query-card">
+                        <div class="query-form">
+                            <div class="form-group">
+                                <label data-i18n="query.form.name_label">受験者名</label>
+                                <input type="text" id="student-name" placeholder="例：苗木 誠" class="form-input">
+                            </div>
+                            <div class="form-group">
+                                <label data-i18n="query.form.id_label">受験番号</label>
+                                <input type="text" id="student-id" placeholder="例：HPA-001" class="form-input">
+                                <small class="form-hint" data-i18n="query.form.id_hint">※ 受験票に記載の番号をご入力ください</small>
+                            </div>
+                            <button id="search-btn" class="btn-primary">
+                                <i class="fas fa-search"></i> <span data-i18n="query.form.submit">照会する</span>
+                            </button>
+                        </div>
+                        
+                        <!-- 查询结果 -->
+                        <div class="query-result" id="query-result" style="display: none;">
+                            <div class="result-card">
+                                <div class="result-header">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-i18n="query.result.title">入学許可証</span>
+                                </div>
+                                <div class="result-body" id="result-body">
+                                    <!-- 动态内容 -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 录取名单 -->
+                    <div class="admitted-list">
+                        <h3><i class="fas fa-users"></i> <span data-i18n="query.list.title">合格者一覧</span></h3>
+                        <div class="student-grid" id="student-grid">
+                            <!-- 动态生成 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 学园概要页面 -->
+                <div id="about-page" class="page">
+                    <div class="page-header">
+                        <h2><i class="fas fa-landmark"></i> <span data-i18n="about.title">学園概要</span></h2>
+                    </div>
+                    <div class="about-content">
+                        <div class="about-card">
+                            <h3 data-i18n="about.history.title">沿革</h3>
+                            <p data-i18n="about.history.text">希望峰学园は、才能ある人材を育成するために設立された私立の学園です。「超高校級」の称号を持つ生徒のみが入学を許されます。</p>
+                        </div>
+                        <div class="about-card">
+                            <h3 data-i18n="about.mission.title">教育理念</h3>
+                            <p data-i18n="about.mission.text">「希望」をテーマに、各生徒の持つ「才能」を最大限に引き出す教育を実践しています。伝統と革新が共存する学びの場です。</p>
+                        </div>
+                        <div class="about-card">
+                            <h3 data-i18n="about.access.title">アクセス</h3>
+                            <p>〒160-0023<br>東京都新宿区西新宿（仮想キャンパス）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- OC介绍页面 -->
+                <div id="oc-page" class="page">
+                    <div class="page-header">
+                        <h2><i class="fas fa-star"></i> <span data-i18n="oc.title">超高校級のOC</span></h2>
+                        <p data-i18n="oc.subtitle">—— 期待の新人、ここに現る ——</p>
+                    </div>
+                    <div class="oc-profile">
+                        <div class="oc-avatar">
+                            <!-- 这里放朋友的OC头像 -->
+                            <div class="avatar-placeholder">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                        </div>
+                        <div class="oc-info">
+                            <h3 id="oc-name">ここにOCの名前</h3>
+                            <div class="oc-title-badge">
+                                <span class="title-badge">超高校級の</span>
+                                <span id="oc-talent">???</span>
+                            </div>
+                            <div class="oc-desc" id="oc-desc">
+                                <p>ここにOCの紹介文を入力してください。</p>
+                                <p>才能、性格、背景設定などを記載できます。</p>
+                            </div>
+                            <div class="oc-status">
+                                <div class="status-item">
+                                    <span class="status-label">入学年度：</span>
+                                    <span id="oc-year">2025年度</span>
+                                </div>
+                                <div class="status-item">
+                                    <span class="status-label">所属：</span>
+                                    <span id="oc-class">希望峰学園 本科</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- 页脚 -->
+        <footer class="footer">
+            <p>© 2025 私立希望ヶ峰学園 — 才能ある君の入学を待っている —</p>
+        </footer>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
